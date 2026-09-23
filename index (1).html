@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>ZeyonMedia - Product Visualization Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00b8ff;
+            --primary-light: #88d0ff;
+            --primary-dark: #02293f;
+            --primary-darker: #02586a;
+            --bg-dark: #0c0e13;
+            --bg-card: #02293f;
+            --text-light: #e9e9f3;
+            --text-muted: #bdccda;
+            --text-dim: #91a9bd;
+            --border: rgba(54, 59, 64, 0.4);
+            --border-subtle: rgba(69, 86, 98, 0.2);
+            --accent-orange: #ffb972;
+            --accent-teal: #55b0c3;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #111319 0%, #111319 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            backdrop-filter: blur(6px);
+            background: rgba(12, 14, 19, 0.8);
+            border-bottom: 1px solid rgba(61, 72, 80, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 80px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 0.26px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .cta-btn {
+            background: var(--primary);
+            border: none;
+            border-radius: 12px;
+            padding: 8px 24px;
+            color: #1a1d22;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 12px rgba(0, 184, 255, 0.35);
+            transition: transform 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .menu-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(180deg, var(--primary-darker) 0%, var(--primary-darker) 100%);
+            padding: 80px 32px 64px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -128px;
+            left: -128px;
+            width: 384px;
+            height: 384px;
+            background: rgba(72, 22, 203, 0.2);
+            border-radius: 12px;
+            filter: blur(60px);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: -128px;
+            top: 33.33%;
+            width: 512px;
+            height: 512px;
+            background: rgba(0, 184, 255, 0.15);
+            border-radius: 12px;
+            filter: blur(70px);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 56px;
+            font-weight: bold;
+            line-height: 58.8px;
+            margin-bottom: 24px;
+            letter-spacing: -1.4px;
+            text-transform: uppercase;
+        }
+
+        .hero-text h1 .gradient {
+            background: linear-gradient(90deg, var(--primary-light) 0%, #cabeff 50%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 29.25px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            letter-spacing: -0.18px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            border-radius: 2px;
+            padding: 8px 24px;
+            color: #1a1d22;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0px 0px 12px rgba(0, 184, 255, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #2c2d36;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            padding: 9px 25px;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #353841;
+        }
+
+        .process-indicator {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 17px;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.88px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 32px;
+        }
+
+        .process-step {
+            color: var(--text-dim);
+        }
+
+        .process-step.active {
+            color: var(--primary-light);
+        }
+
+        .process-step.completed {
+            color: var(--accent-orange);
+        }
+
+        .process-arrow {
+            color: #3d4850;
+        }
+
+        /* ===== VIEWPORT CARD ===== */
+        .viewport-card {
+            background: var(--primary-dark);
+            border: 1px solid rgba(54, 59, 64, 0.4);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.8);
+        }
+
+        .viewport-header {
+            background: #2c2d36;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 4px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .viewport-status {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 12px;
+        }
+
+        .viewport-image {
+            width: 100%;
+            height: 398px;
+            background: var(--primary-darker);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dim);
+        }
+
+        .viewport-image img {
+            width: 111.25%;
+            height: 160.45%;
+            object-fit: cover;
+            position: absolute;
+            left: -5.61%;
+            top: -39.88%;
+        }
+
+        .viewport-telemetry {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            backdrop-filter: blur(6px);
+            background: rgba(12, 14, 19, 0.8);
+            border: 1px solid rgba(54, 59, 64, 0.4);
+            border-radius: 2px;
+            padding: 9px;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-light);
+            line-height: 24px;
+            z-index: 10;
+        }
+
+        .telemetry-label {
+            color: var(--primary);
+        }
+
+        .viewport-timeline {
+            background: rgba(30, 31, 37, 0.6);
+            border-radius: 2px;
+            padding: 4px 8px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .timeline-bar {
+            flex: 1;
+            height: 6px;
+            background: #33353a;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .timeline-progress {
+            height: 100%;
+            background: var(--primary);
+            width: 25%;
+            border-radius: 12px;
+        }
+
+        /* ===== MANIFESTO SECTION ===== */
+        .manifesto {
+            background: var(--primary-dark);
+            border-top: 1px solid rgba(39, 81, 112, 0.3);
+            border-bottom: 1px solid rgba(39, 81, 112, 0.3);
+            padding: 25px 32px;
+        }
+
+        .manifesto-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .manifesto-text {
+            flex: 1;
+        }
+
+        .manifesto-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            letter-spacing: 1.1px;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 4px;
+        }
+
+        .manifesto-heading {
+            font-size: 32px;
+            font-weight: bold;
+            line-height: 40px;
+            text-transform: uppercase;
+            letter-spacing: -0.8px;
+            margin-bottom: 16px;
+        }
+
+        .manifesto-desc {
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .audience-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .badge {
+            background: #2c2d36;
+            border: 1px solid rgba(39, 81, 112, 0.3);
+            border-radius: 2px;
+            padding: 5px 9px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.88px;
+        }
+
+        /* ===== CAPABILITIES SECTION ===== */
+        .capabilities {
+            background: var(--primary-darker);
+            padding: 64px 32px;
+        }
+
+        .section-header {
+            max-width: 1280px;
+            margin: 0 auto 40px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #d3e7f4;
+            letter-spacing: 1.1px;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 4px;
+        }
+
+        .section-title {
+            font-size: 44px;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 52px;
+            letter-spacing: -1.1px;
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .capability-card {
+            background: var(--primary-dark);
+            border: 1px solid rgba(201, 207, 211, 0.3);
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 280px;
+            animation: slideInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .capability-card:nth-child(1) { animation-delay: 0s; }
+        .capability-card:nth-child(2) { animation-delay: 0.2s; }
+        .capability-card:nth-child(3) { animation-delay: 0.4s; }
+        .capability-card:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .capability-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: var(--primary-light);
+        }
+
+        .capability-card:nth-child(2) .capability-number { color: var(--accent-teal); }
+        .capability-card:nth-child(3) .capability-number { color: var(--accent-orange); }
+        .capability-card:nth-child(4) .capability-number { color: var(--primary); }
+
+        .capability-title {
+            font-size: 24px;
+            font-weight: 500;
+            text-transform: uppercase;
+            line-height: 32px;
+            margin-bottom: 8px;
+            letter-spacing: -0.24px;
+        }
+
+        .capability-desc {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 24px;
+            margin-bottom: 16px;
+        }
+
+        .capability-footer {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 17px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            font-family: 'Space Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .capability-spec {
+            color: var(--text-dim);
+        }
+
+        .capability-cta {
+            color: var(--primary-light);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .capability-cta:hover {
+            color: var(--text-light);
+        }
+
+        /* ===== PORTFOLIO SECTION ===== */
+        .portfolio {
+            background: var(--primary-darker);
+            border-top: 1px solid var(--border-subtle);
+            padding: 65px 32px 64px;
+        }
+
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .filter-pill {
+            background: #2c2d36;
+            border: 1px solid rgba(39, 81, 112, 0.3);
+            border-radius: 2px;
+            padding: 7px 9px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .filter-pill.active {
+            background: var(--primary);
+            color: #1a1d22;
+            border-color: var(--primary);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item-large {
+            background: var(--primary-dark);
+            border: 1px solid rgba(39, 81, 112, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            min-height: 502px;
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 400px;
+            background: var(--primary-darker);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(12, 14, 19, 0.9), transparent);
+            padding: 24px;
+            color: var(--text-light);
+        }
+
+        .portfolio-category {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            letter-spacing: 0.88px;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-title {
+            font-size: 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: -0.32px;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 20px;
+        }
+
+        /* ===== PHILOSOPHY SECTION ===== */
+        .philosophy {
+            background: var(--primary-darker);
+            border-top: 1px solid var(--border-subtle);
+            padding: 65px 32px;
+        }
+
+        .philosophy-content {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .philosophy-intro {
+            max-width: 768px;
+            margin-bottom: 40px;
+        }
+
+        .philosophy-heading {
+            font-size: 44px;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 52px;
+            letter-spacing: -1.1px;
+            margin: 8px 0 16px;
+        }
+
+        .philosophy-subtext {
+            font-size: 18px;
+            line-height: 28px;
+            color: var(--text-muted);
+            letter-spacing: -0.18px;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .philosophy-card {
+            background: var(--primary-dark);
+            border: 1px solid rgba(39, 81, 112, 0.3);
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .philosophy-icon {
+            width: 40px;
+            height: 40px;
+            background: #282a30;
+            border: 1px solid rgba(0, 184, 255, 0.3);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .philosophy-card:nth-child(2) .philosophy-icon {
+            border-color: rgba(202, 190, 255, 0.3);
+        }
+
+        .philosophy-card:nth-child(3) .philosophy-icon {
+            border-color: rgba(255, 185, 114, 0.3);
+        }
+
+        .philosophy-name {
+            font-size: 24px;
+            font-weight: 500;
+            text-transform: uppercase;
+            line-height: 32px;
+        }
+
+        .philosophy-desc {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 24px;
+        }
+
+        .philosophy-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            padding-top: 4px;
+            letter-spacing: 0px;
+        }
+
+        .philosophy-card:nth-child(1) .philosophy-tag {
+            color: var(--primary-light);
+        }
+
+        .philosophy-card:nth-child(2) .philosophy-tag {
+            color: #443e5e;
+        }
+
+        .philosophy-card:nth-child(3) .philosophy-tag {
+            color: var(--accent-orange);
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials {
+            background: var(--primary-darker);
+            border-top: 1px solid var(--border-subtle);
+            padding: 65px 32px;
+        }
+
+        .testimonials-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .rating {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-orange);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--primary-dark);
+            border: 1px solid rgba(39, 81, 112, 0.3);
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .quote {
+            font-size: 44px;
+            font-weight: bold;
+            color: var(--primary-light);
+            margin-bottom: 8px;
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            color: var(--text-light);
+            font-style: italic;
+            line-height: 24px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-author {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 9px;
+        }
+
+        .author-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-light);
+            line-height: 20px;
+        }
+
+        .author-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--primary-light);
+            line-height: 16px;
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq {
+            background: var(--primary-darker);
+            padding: 64px 192px;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .faq-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            letter-spacing: 1.1px;
+            margin-bottom: 4px;
+        }
+
+        .faq-title {
+            font-size: 44px;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 52px;
+            letter-spacing: -1.1px;
+            margin-bottom: 16px;
+        }
+
+        .faq-subtitle {
+            font-size: 15px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .accordion {
+            max-width: 896px;
+            margin: 40px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .accordion-item {
+            background: var(--primary-dark);
+            border: 1px solid rgba(39, 81, 112, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: transparent;
+            border: none;
+            padding: 16px;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text-light);
+            font-size: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .accordion-toggle {
+            width: 12px;
+            height: 7.4px;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.open .accordion-toggle {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 0 16px 16px;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 24px;
+        }
+
+        .accordion-item.open .accordion-content {
+            display: block;
+        }
+
+        /* ===== FORM SECTION ===== */
+        .form-section {
+            background: var(--primary-darker);
+            padding: 64px 32px;
+        }
+
+        .form-container {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 32px;
+            max-width: 1280px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .form-intro {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            letter-spacing: 1.1px;
+        }
+
+        .form-heading {
+            font-size: 44px;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 52px;
+            letter-spacing: -1.1px;
+        }
+
+        .form-intro p {
+            font-size: 18px;
+            line-height: 29.25px;
+            color: var(--text-muted);
+            letter-spacing: -0.18px;
+        }
+
+        .nda-note {
+            background: var(--primary-dark);
+            border: 1px solid rgba(39, 81, 112, 0.3);
+            border-radius: 4px;
+            padding: 17px;
+            display: flex;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .nda-note-title {
+            color: var(--primary-light);
+            font-family: 'Space Mono', monospace;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .nda-note-text {
+            color: var(--text-muted);
+            line-height: 20px;
+        }
+
+        .contact-info {
+            font-size: 12px;
+            font-family: 'Space Mono', monospace;
+            line-height: 16px;
+            margin-top: 8px;
+        }
+
+        .contact-label {
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-value {
+            color: var(--primary-light);
+        }
+
+        /* Form Card */
+        .form-card {
+            background: var(--primary-dark);
+            border: 1px solid rgba(39, 81, 112, 0.3);
+            border-radius: 8px;
+            padding: 41px;
+            box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .form-label-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--text-light);
+            letter-spacing: 0.88px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            background: var(--primary-darker);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            padding: 11px 17px;
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            letter-spacing: 0.13px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(2, 88, 106, 0.8);
+            color: var(--text-light);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--text-dim);
+        }
+
+        .form-textarea {
+            grid-column: 1 / -1;
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            background: var(--primary);
+            border: none;
+            border-radius: 2px;
+            padding: 16px;
+            color: #1a1d22;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 8px;
+            box-shadow: 0px 0px 12px rgba(0, 184, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 16px rgba(0, 184, 255, 0.4);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .form-privacy {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 16px;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+            text-align: center;
+        }
+
+        /* Success/Error Messages */
+        .form-message {
+            display: none;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .form-message.success {
+            background: rgba(0, 184, 255, 0.15);
+            color: var(--primary-light);
+            border: 1px solid rgba(0, 184, 255, 0.3);
+        }
+
+        .form-message.error {
+            background: rgba(255, 100, 100, 0.15);
+            color: #ff6464;
+            border: 1px solid rgba(255, 100, 100, 0.3);
+        }
+
+        .form-message.show {
+            display: block;
+        }
+
+        /* ===== PROCESS SECTION ===== */
+        .process {
+            background: var(--primary-darker);
+            border-top: 1px solid var(--border-subtle);
+            padding: 65px 32px 64px;
+        }
+
+        .process-intro {
+            max-width: 1280px;
+            margin: 0 auto 40px;
+        }
+
+        .timeline {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .timeline-step {
+            background: var(--primary-dark);
+            border: 1px solid rgba(39, 81, 112, 0.3);
+            border-radius: 8px;
+            padding: 17px;
+            min-width: 236px;
+            text-align: center;
+        }
+
+        .timeline-step-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            margin-bottom: 8px;
+        }
+
+        .timeline-step-name {
+            font-size: 20px;
+            font-weight: 500;
+            text-transform: uppercase;
+            line-height: 28px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-step-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 20px;
+            margin-bottom: 16px;
+        }
+
+        .timeline-step-tag {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 17px;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-dim);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 12px;
+        }
+
+        /* ===== FINAL CTA SECTION ===== */
+        .final-cta {
+            background: var(--primary-darker);
+            border-top: 1px solid var(--border-subtle);
+            padding: 65px 128px 64px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 768px;
+            height: 256px;
+            background: rgba(0, 184, 255, 0.2);
+            filter: blur(60px);
+            border-radius: 50%;
+        }
+
+        .final-cta-badge {
+            background: #2c2d36;
+            border: 1px solid rgba(39, 81, 112, 0.3);
+            border-radius: 2px;
+            display: inline-flex;
+            gap: 4px;
+            align-items: center;
+            padding: 5px 9px;
+            margin-bottom: 16px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            font-weight: bold;
+        }
+
+        .final-cta h2 {
+            font-size: 56px;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 70px;
+            letter-spacing: -1.4px;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .final-cta h2 .gradient {
+            background: linear-gradient(90deg, var(--primary-light) 0%, #cabeff 50%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .final-cta p {
+            font-size: 18px;
+            line-height: 28px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            max-width: 672px;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: -0.18px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .final-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-large {
+            background: var(--primary);
+            border: none;
+            border-radius: 2px;
+            padding: 16px 40px;
+            color: #1a1d22;
+            font-weight: bold;
+            font-size: 20px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0px 0px 15px rgba(0, 184, 255, 0.4);
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-large:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary-large {
+            background: #2c2d36;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            padding: 17px 41px;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 20px;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary-large:hover {
+            background: #353841;
+        }
+
+        .final-footer-info {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--text-dim);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0c0e13;
+            border-top: 1px solid rgba(61, 72, 80, 0.3);
+            padding: 64px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, rgba(12, 14, 19, 0), #1e1f25);
+            pointer-events: none;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+
+        .footer-column h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #e2e2e9;
+            letter-spacing: 0.55px;
+            margin-bottom: 8px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            font-size: 13px;
+            color: #bdc8d2;
+            line-height: 20px;
+            margin-bottom: 4px;
+        }
+
+        .footer-column ul li a {
+            color: #bdc8d2;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .footer-social-link {
+            background: #282a30;
+            border: 1px solid rgba(61, 72, 80, 0.4);
+            border-radius: 2px;
+            padding: 5px;
+            font-size: 10px;
+            color: #bdc8d2;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social-link:hover {
+            background: #353841;
+        }
+
+        .footer-divider {
+            border-top: 1px solid rgba(61, 72, 80, 0.2);
+            padding-top: 17px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: #87929b;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-links a {
+            color: #87929b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .capabilities-grid,
+            .philosophy-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                gap: 16px;
+            }
+
+            .timeline-step {
+                min-width: 150px;
+            }
+
+            .section-title,
+            .manifesto-heading,
+            .philosophy-heading,
+            .faq-title,
+            .final-cta h2 {
+                font-size: 32px;
+                line-height: 40px;
+            }
+
+            .final-cta {
+                padding: 40px 32px;
+            }
+
+            .faq {
+                padding: 64px 32px;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#process">Process</a>
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="header-actions">
+                <button class="cta-btn" onclick="scrollToForm()">START A PROJECT</button>
+                <div class="menu-icon">☰</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    MAKE YOUR PRODUCT<br>
+                    <span class="gradient">IMPOSSIBLE TO</span><br>
+                    <span class="gradient">IGNORE.</span>
+                </h1>
+                <p>We turn products, ideas, and complex concepts into powerful visual experiences — from strategy and scripting to 3D visualization, animation, video, and final production.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary">LET'S VISUALIZE YOUR PRODUCT</button>
+                    <button class="btn-secondary">Explore Services</button>
+                </div>
+                <div class="process-indicator">
+                    <span class="process-step active">01 STRATEGY</span>
+                    <span class="process-arrow">→</span>
+                    <span class="process-step">02 SCRIPT</span>
+                    <span class="process-arrow">→</span>
+                    <span class="process-step">03 DESIGN</span>
+                    <span class="process-arrow">→</span>
+                    <span class="process-step">04 ANIMATION</span>
+                    <span class="process-arrow">→</span>
+                    <span class="process-step completed">05 DELIVERY</span>
+                </div>
+            </div>
+
+            <div class="viewport-card">
+                <div class="viewport-header">
+                    <div class="viewport-status">
+                        <div class="status-dot"></div>
+                        <span>CAMERA_01 // ORTHO EXPLODE</span>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <span>FOV: 35.0°</span>
+                        <span style="color: var(--accent-orange);">OCTANE 2026.1</span>
+                        <span>FPS: 60.0</span>
+                    </div>
+                </div>
+                <div class="viewport-image">
+                    <div style="color: var(--accent-orange); font-size: 24px;">[ VISUALIZATION ]</div>
+                    <div class="viewport-telemetry">
+                        <div class="telemetry-label">TELEMETRY_LOCK</div>
+                        <div>COORD: X+142.8 Y-89.1 Z+44.0</div>
+                        <div>POLYCOUNT: 4,821,900</div>
+                        <div style="color: #443e5e;">SUBDIV: LEVEL 3</div>
+                    </div>
+                </div>
+                <div class="viewport-timeline">
+                    <span>FRAME: 0142/0600</span>
+                    <div class="timeline-bar">
+                        <div class="timeline-progress"></div>
+                    </div>
+                    <span>00:02:24 SEC</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MANIFESTO SECTION -->
+    <section class="manifesto">
+        <div class="manifesto-content">
+            <div class="manifesto-text">
+                <div class="manifesto-label">VISUAL MANIFESTO</div>
+                <h2 class="manifesto-heading">YOU BRING THE PRODUCT. WE TURN IT INTO A VISUAL STORY.</h2>
+                <p class="manifesto-desc">From strategy and scripting to 3D visualization, animation, and final production — ZeyonMedia helps businesses communicate their products with surgical clarity and unmistakable impact.</p>
+            </div>
+            <div class="audience-badges">
+                <div class="badge">Manufacturers</div>
+                <div class="badge">Engineering Firms</div>
+                <div class="badge">Hardware Startups</div>
+                <div class="badge" style="width: 100%; margin-top: 8px;">Industrial Innovators</div>
+                <div class="badge" style="width: 100%;">Consumer Brands</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPABILITIES SECTION -->
+    <section class="capabilities" id="services">
+        <div class="section-header">
+            <div class="section-label">WHAT WE DO</div>
+            <h2 class="section-title">FROM PRODUCT IDEA TO POWERFUL VISUAL.</h2>
+        </div>
+        <div class="capabilities-grid">
+            <div class="capability-card">
+                <div>
+                    <div class="capability-number">01 / CAPABILITY</div>
+                    <h3 class="capability-title">PRODUCT VISUALIZATION</h3>
+                    <p class="capability-desc">Show your product from every angle with high-quality 3D visuals, cinematic renders, material breakdowns, and photorealistic lighting.</p>
+                </div>
+                <div class="capability-footer">
+                    <span class="capability-spec">4K+ STILLS • MATERIAL STUDIES</span>
+                    <span class="capability-cta">SPECIFY →</span>
+                </div>
+            </div>
+
+            <div class="capability-card">
+                <div>
+                    <div class="capability-number">02 / CAPABILITY</div>
+                    <h3 class="capability-title">MECHANISM & EXPLAINER ANIMATION</h3>
+                    <p class="capability-desc">Make complex products, machines, kinematics, and internal mechanisms easy to understand through clear, surgical visual storytelling.</p>
+                </div>
+                <div class="capability-footer">
+                    <span class="capability-spec">EXPLODED VIEWS • KINEMATICS</span>
+                    <span class="capability-cta">SPECIFY →</span>
+                </div>
+            </div>
+
+            <div class="capability-card">
+                <div>
+                    <div class="capability-number">03 / CAPABILITY</div>
+                    <h3 class="capability-title">VIDEO PRODUCTION</h3>
+                    <p class="capability-desc">Turn your product into engaging promotional launch videos, high-impact social content, stakeholder pitches, and high-conversion commercial reels.</p>
+                </div>
+                <div class="capability-footer">
+                    <span class="capability-spec">COMMERCIALS • INVESTOR DECKS</span>
+                    <span class="capability-cta">SPECIFY →</span>
+                </div>
+            </div>
+
+            <div class="capability-card">
+                <div>
+                    <div class="capability-number">04 / CAPABILITY</div>
+                    <h3 class="capability-title">CREATIVE STRATEGY</h3>
+                    <p class="capability-desc">We help determine what to show, how to show it, and how to communicate the distinct technical value proposition of your hardware product.</p>
+                </div>
+                <div class="capability-footer">
+                    <span class="capability-spec">SCRIPTING • VISUAL DIRECTION</span>
+                    <span class="capability-cta">SPECIFY →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section class="process" id="process">
+        <div class="process-intro">
+            <div class="section-label">THE PROCESS</div>
+            <h2 class="section-title">FROM IDEA TO FINAL FRAME.</h2>
+            <p style="font-size: 15px; color: var(--text-muted); margin-top: 16px;">A structured, calibrated creative pipeline keeps every project clear, hyper-efficient, and laser-focused on your final commercial objective.</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-step">
+                <div class="timeline-step-label">01 // PHASE</div>
+                <h3 class="timeline-step-name">UNDERSTAND</h3>
+                <p class="timeline-step-desc">We dissect your hardware, target buyer, technical specifications, and key communication bottleneck.</p>
+                <div class="timeline-step-tag"><div class="timeline-dot"></div>INTAKE & NDA</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-step-label">02 // PHASE</div>
+                <h3 class="timeline-step-name">STRATEGIZE</h3>
+                <p class="timeline-step-desc">We establish the visual treatment, lighting language, technical depth, and core cinematic narrative direction.</p>
+                <div class="timeline-step-tag"><div class="timeline-dot"></div>MOODBOARD & CMF</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-step-label" style="color: #443e5e;">03 // PHASE</div>
+                <h3 class="timeline-step-name">SCRIPT</h3>
+                <p class="timeline-step-desc">We structure scene sequences, technical pacing, camera choreographies, and on-screen graphical telemetry.</p>
+                <div class="timeline-step-tag" style="color: #443e5e;"><div class="timeline-dot" style="background: #443e5e;"></div>STORYBOARD HUD</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-step-label" style="color: #443e5e;">04 // PHASE</div>
+                <h3 class="timeline-step-name">CREATE</h3>
+                <p class="timeline-step-desc">CAD prep, rigging, texturing, animation, Octane/Unreal render passes, and custom sound design integration.</p>
+                <div class="timeline-step-tag" style="color: #443e5e;"><div class="timeline-dot" style="background: #443e5e;"></div>RENDER FARM</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-step-label" style="color: var(--accent-orange);">05 // PHASE</div>
+                <h3 class="timeline-step-name">DELIVER</h3>
+                <p class="timeline-step-desc">Review iterations, master grading, and multi-format delivery tailored for web, stage displays, and marketing ad sets.</p>
+                <div class="timeline-step-tag" style="color: var(--accent-orange);"><div class="timeline-dot" style="background: var(--accent-orange);"></div>4K PRORES / WEB</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM SECTION -->
+    <section class="form-section" id="contact">
+        <div class="form-container">
+            <div class="form-intro">
+                <div class="form-label">START A PROJECT</div>
+                <h2 class="form-heading">HAVE A PRODUCT YOU WANT TO SHOWCASE?</h2>
+                <p>Tell us what you're building. Whether you possess finished production units, raw STP/STEP CAD models, patent sketches, or simply a concept deck — we will turn it into a world-class visual story.</p>
+                
+                <div class="nda-note">
+                    <div>
+                        <div class="nda-note-title">✓ STANDARD STUDIO CONFIDENTIALITY</div>
+                        <p class="nda-note-text">Your intellectual property, CAD schematics, and prototype geometries are held strictly confidential under mutual NDA before any review.</p>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <div><span class="contact-label">DIRECT TRANSMISSION:</span> <span class="contact-value">zeyonmedia@gmail.com</span></div>
+                    <div><span class="contact-label">ESTIMATED RESPONSE:</span> <span style="color: var(--text-light);">WITHIN 12 BUSINESS HOURS</span></div>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-message" id="formMessage"></div>
+
+                    <div class="form-group">
+                        <div class="form-group-item">
+                            <label class="form-label-text">YOUR FULL NAME *</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="e.g. Alex Henderson" required>
+                        </div>
+                        <div class="form-group-item">
+                            <label class="form-label-text">BUSINESS EMAIL *</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="alex@company.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-group-item full">
+                            <label class="form-label-text">PHONE / WHATSAPP *</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+1 (555) 019-2831" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="form-submit" id="submitBtn">START MY PROJECT</button>
+
+                    <div class="form-privacy">
+                        <span>🔒 Your project data & files stay strictly encrypted & confidential under studio NDA.</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY SECTION -->
+    <section class="philosophy">
+        <div class="philosophy-content">
+            <div class="philosophy-intro">
+                <div class="section-label">OUR PHILOSOPHY</div>
+                <h2 class="philosophy-heading">WE DON'T JUST MAKE THINGS LOOK GOOD.<br>WE MAKE THEM EASIER TO UNDERSTAND.</h2>
+                <p class="philosophy-subtext">A great visual should do more than attract attention. It should communicate an idea, explain a mechanism, and help your target audience grasp its real technical value instantly.</p>
+            </div>
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">👁️</div>
+                    <h3 class="philosophy-name">CLARITY</h3>
+                    <p class="philosophy-desc">Complex engineering architectures, invisible internal fluid paths, and subtle tolerances become transparent and unmistakable through carefully articulated camera angles.</p>
+                    <div class="philosophy-tag">ENGINEERED CONTEXT</div>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">✨</div>
+                    <h3 class="philosophy-name">VISUAL IMPACT</h3>
+                    <p class="philosophy-desc">Your hardware is presented with the high-stakes theatrical lighting and cinematic authority of Hollywood film production, commanding industry-wide prestige.</p>
+                    <div class="philosophy-tag">CINEMATIC REALISM</div>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">🎯</div>
+                    <h3 class="philosophy-name">PURPOSE</h3>
+                    <p class="philosophy-desc">Every exploded view, camera zoom, and telemetry overlay is anchored in a concrete commercial goal: driving pre-orders, securing funding, or closing enterprise tenders.</p>
+                    <div class="philosophy-tag">CONVERSION DRIVEN</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials">
+        <div class="testimonials-header">
+            <div>
+                <div class="section-label">CLIENT FEEDBACK</div>
+                <h2 class="section-title">WHAT OUR CLIENTS SAY</h2>
+            </div>
+            <div class="rating">
+                <span>★ 5.0 RATING</span>
+                <span>• VERIFIED REVIEWS</span>
+            </div>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div>
+                    <div class="quote">"</div>
+                    <p class="testimonial-text">ZeyonMedia understood the product immediately and translated a complex mechanical assembly into visuals that were effortless to understand for our seed investors.</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-name">Marcus Vance</div>
+                    <div class="author-title">Head of Hardware Engineering, OrbitTech</div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div>
+                    <div class="quote" style="color: #443e5e;">"</div>
+                    <p class="testimonial-text">The animation helped us explain our internal multi-stage valve mechanism much more clearly than any pitch deck or live test bench presentation ever could.</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-name">Elena Rostova</div>
+                    <div class="author-title" style="color: #443e5e;">VP Product, Aether Industrial</div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div>
+                    <div class="quote" style="color: var(--accent-orange);">"</div>
+                    <p class="testimonial-text">Professional communication, meticulous attention to optical glass physics, and an innate understanding of high-end consumer technology product launches.</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-name">Liam Chen</div>
+                    <div class="author-title" style="color: var(--accent-orange);">Founder, Lumina Dynamics</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq" id="faq">
+        <div class="faq-header">
+            <div class="faq-label">FREQUENTLY ASKED QUESTIONS</div>
+            <h2 class="faq-title">QUESTIONS, ANSWERED.</h2>
+            <p class="faq-subtitle">Everything you need to know about our CAD intake, animation production pipelines, timelines, and deliverables.</p>
+        </div>
+        <div class="accordion">
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>What CAD and 3D file formats do you accept?</span>
+                    <svg class="accordion-toggle" viewBox="0 0 12 7.4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6.4L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="accordion-content">We accept STEP, STP, OBJ, FBX, DWG, PDF, and most common 3D formats. We can also work from CAD screenshots, engineering drawings, or raw mesh files.</div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Can you work if we only have sketches or a physical prototype?</span>
+                    <svg class="accordion-toggle" viewBox="0 0 12 7.4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6.4L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="accordion-content">Absolutely. We can photograph your physical prototype and reconstruct it in CAD, or work directly from technical drawings and patent sketches to build a 3D model.</div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>How do you handle internal mechanisms and exploded views?</span>
+                    <svg class="accordion-toggle" viewBox="0 0 12 7.4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6.4L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="accordion-content">We specialize in revealing internal kinematics, fluid paths, and component assembly sequences through carefully choreographed camera movements and automated explode animations that make complex mechanisms crystal clear.</div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>What is the typical production timeline for a 3D animation?</span>
+                    <svg class="accordion-toggle" viewBox="0 0 12 7.4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6.4L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="accordion-content">Most animation projects run 4-8 weeks depending on complexity. CAD prep is typically 1-2 weeks, animation and rendering 3-6 weeks, and final delivery within 1 week. We can expedite on request.</div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>How are client reviews and revision cycles structured?</span>
+                    <svg class="accordion-toggle" viewBox="0 0 12 7.4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6.4L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="accordion-content">You get 2 official review gates: storyboard/keyframe approval and draft render approval. Each gate allows up to 2 rounds of targeted revisions before final delivery.</div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Do we own the intellectual property and master 3D assets?</span>
+                    <svg class="accordion-toggle" viewBox="0 0 12 7.4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6.4L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="accordion-content">Yes. All master 3D files, render assets, and final deliverables remain your intellectual property. You can request project files, textures, and CAD reconstructions upon completion.</div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Do you work with international hardware clients remotely?</span>
+                    <svg class="accordion-toggle" viewBox="0 0 12 7.4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6.4L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="accordion-content">Absolutely. We work with clients worldwide. All projects are managed through secure encrypted channels, video conferencing, and collaborative digital workflows. Time zones are no barrier.</div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>What render engines do you use for high realism?</span>
+                    <svg class="accordion-toggle" viewBox="0 0 12 7.4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6.4L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="accordion-content">We primarily use Octane Render and Unreal Engine for photorealistic output. Both support real-time interactivity and deliver 4K+ quality suitable for broadcast, web, and large-format displays.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA SECTION -->
+    <section class="final-cta">
+        <div class="final-cta-badge">
+            <span>●</span>
+            <span>PRODUCTION SLOTS OPEN // Q2-Q3</span>
+        </div>
+        <h2>YOUR PRODUCT HAS A STORY.<br><span class="gradient">LET'S VISUALIZE IT.</span></h2>
+        <p>From the first raw CAD file to the final 4K cinematic launch reel, ZeyonMedia transforms complex products into clear, engaging visual experiences that drive growth.</p>
+        <div class="final-buttons">
+            <button class="btn-large" onclick="scrollToForm()">START A PROJECT</button>
+            <button class="btn-secondary-large">💬 Have a Question? Let's Talk</button>
+        </div>
+        <div class="final-footer-info">
+            <span>ENCRYPTED PROTOCOL</span>
+            <span>•</span>
+            <span>MUTUAL NDA GUARANTEE</span>
+            <span>•</span>
+            <span>OCTANE / UNREAL CORE ENGINE</span>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>TURNING IDEAS INTO VISUAL REALITY.</h3>
+                    <p style="font-size: 13px; color: #bdc8d2; margin-top: 8px; line-height: 20px;">We help businesses visualize, explain, and showcase their products through creative strategy, 3D visualization, animation, and video production.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>SERVICES</h3>
+                    <ul>
+                        <li><a href="#">3D Product Visualization</a></li>
+                        <li><a href="#">3D Animation</a></li>
+                        <li><a href="#">Mechanism Animation</a></li>
+                        <li><a href="#">Product Explainers</a></li>
+                        <li><a href="#">Video Editing</a></li>
+                        <li><a href="#">2D Animation</a></li>
+                        <li><a href="#">VFX</a></li>
+                        <li><a href="#">AI Video Production</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>COMPANY</h3>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Our Process</a></li>
+                        <li><a href="#">Work</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>CONNECT</h3>
+                    <div>
+                        <div style="font-size: 10px; color: #87929b; text-transform: uppercase; margin-bottom: 8px;">WEB</div>
+                        <div style="font-size: 13px; color: #bdc8d2;">zeyonmedia.in</div>
+                    </div>
+                    <div style="margin-top: 12px;">
+                        <div style="font-size: 10px; color: #87929b; text-transform: uppercase; margin-bottom: 8px;">DIRECT</div>
+                        <div style="font-size: 13px; color: #bdc8d2;">zeyonmedia@gmail.com</div>
+                    </div>
+                    <div style="margin-top: 16px;">
+                        <div style="font-size: 10px; color: #87929b; text-transform: uppercase; margin-bottom: 8px;">NETWORK NODES</div>
+                        <div class="footer-social">
+                            <div class="footer-social-link">IG</div>
+                            <div class="footer-social-link">YT</div>
+                            <div class="footer-social-link">LN</div>
+                            <div class="footer-social-link">BE</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-divider">
+                <span>© 2026 ZeyonMedia. All Rights Reserved.</span>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwUwTUxZevY3AZjjhD34VDUjBO90B1s_yU2gA-azK4iqDPqxtbl8Cyry9yPmH-jWME38A/exec';
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Validation
+            if (!name || !email || !phone) {
+                showMessage('Please fill in all required fields', 'error');
+                return;
+            }
+
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'SUBMITTING...';
+
+            // Build URL with query parameters
+            const url = SCRIPT_URL + '?' + new URLSearchParams({
+                name: name,
+                email: email,
+                phone: phone
+            });
+
+            // Try with POST first (more reliable)
+            submitFormWithRetry(url, name, email, phone, submitBtn, 0);
+        }
+
+        function submitFormWithRetry(url, name, email, phone, submitBtn, attempt) {
+            const method = attempt === 0 ? 'POST' : 'GET';
+            
+            fetch(url, {
+                method: method,
+                mode: 'no-cors'
+            })
+            .then(() => {
+                showMessage('✓ Form submitted successfully! We will respond within 12 business hours.', 'success');
+                document.getElementById('contactForm').reset();
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'START MY PROJECT';
+            })
+            .catch((error) => {
+                console.error('Submission error:', error);
+                
+                // If POST failed, try GET, if GET failed and attempts < 2, retry
+                if (attempt === 0) {
+                    console.log('POST failed, trying GET...');
+                    submitFormWithRetry(url, name, email, phone, submitBtn, 1);
+                } else {
+                    // Both attempts failed
+                    showMessage(
+                        '⚠️ Could not connect to server. Please email us at zeyonmedia@gmail.com with your details (Name, Email, Phone) and we\'ll follow up within 12 hours.',
+                        'error'
+                    );
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'START MY PROJECT';
+                }
+            });
+        }
+
+        function showMessage(message, type) {
+            const formMessage = document.getElementById('formMessage');
+            formMessage.textContent = message;
+            formMessage.className = `form-message ${type} show`;
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.remove('show');
+            }, 5000);
+        }
+
+        function scrollToForm() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            item.classList.toggle('open');
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
